@@ -1,3 +1,4 @@
+//Adding the ability to allow others to stream their video
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
