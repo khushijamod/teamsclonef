@@ -26,7 +26,7 @@ var peer = new Peer(undefined, {
   host: "/",
   port: "443",
 });
-
+//adding current user video
 let myVideoStream;
 navigator.mediaDevices
   .getUserMedia({
@@ -61,7 +61,7 @@ const connectToNewUser = (userId, stream) => {
 peer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id, user);
 });
-
+//addVideoStream function to add the stream to the video element
 const addVideoStream = (video, stream) => {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
@@ -91,6 +91,7 @@ text.addEventListener("keydown", (e) => {
 const inviteButton = document.querySelector("#inviteButton");
 const muteButton = document.querySelector("#muteButton");
 const stopVideo = document.querySelector("#stopVideo");
+//muting the audio
 muteButton.addEventListener("click", () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
   if (enabled) {
@@ -105,7 +106,7 @@ muteButton.addEventListener("click", () => {
     muteButton.innerHTML = html;
   }
 });
-
+//turning off the video
 stopVideo.addEventListener("click", () => {
   const enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
@@ -120,7 +121,7 @@ stopVideo.addEventListener("click", () => {
     stopVideo.innerHTML = html;
   }
 });
-
+//invite button to get the link
 inviteButton.addEventListener("click", (e) => {
   prompt(
     "Copy this link and send it to people you want to meet with",
